@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIS.WebServer", "SIS\SIS.WebServer.csproj", "{4DBA7305-4975-4336-B9BD-54A4457E6E1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIS.HTTP", "SIS.HTTP\SIS.HTTP.csproj", "{B0243202-C084-4E00-83F4-AB44B5FD22FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{2B093366-C66B-487E-B9C5-E4335D7ABDBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DBA7305-4975-4336-B9BD-54A4457E6E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DBA7305-4975-4336-B9BD-54A4457E6E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DBA7305-4975-4336-B9BD-54A4457E6E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DBA7305-4975-4336-B9BD-54A4457E6E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0243202-C084-4E00-83F4-AB44B5FD22FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0243202-C084-4E00-83F4-AB44B5FD22FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0243202-C084-4E00-83F4-AB44B5FD22FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0243202-C084-4E00-83F4-AB44B5FD22FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E421B1D6-6DA2-4B0D-9F34-94AA375A2EDF}
+	EndGlobalSection
+EndGlobal
