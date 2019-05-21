@@ -1,8 +1,6 @@
-﻿using SIS.HTTP.Enums;
+﻿using SIS.HTTP.Cookies.Contracts;
+using SIS.HTTP.Enums;
 using SIS.HTTP.Headers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SIS.HTTP.Responses
 {
@@ -12,10 +10,13 @@ namespace SIS.HTTP.Responses
 
         IHttpHeaderCollection Headers { get; }
 
+        IHttpCookieCollection Cookies { get; }
+
         byte[] Content { get; set; }
 
         void AddHeader(HttpHeader header);
 
+        void AddCookie(IHttpCookie cookie);
         byte[] GetBytes();
     }
 }

@@ -1,8 +1,7 @@
-﻿using SIS.HTTP.Enums;
+﻿using SIS.HTTP.Cookies.Contracts;
+using SIS.HTTP.Enums;
 using SIS.HTTP.Headers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SIS.HTTP.Requests
 {
@@ -12,6 +11,7 @@ namespace SIS.HTTP.Requests
 
         string Url { get; }
 
+        IHttpCookieCollection Cookies { get; }
         Dictionary<string, object> FormData { get; }
 
         Dictionary<string , object> QueryData { get; }

@@ -1,4 +1,6 @@
 ﻿using SIS.HTTP.Common;
+using SIS.HTTP.Cookies;
+using SIS.HTTP.Cookies.Contracts;
 using SIS.HTTP.Enums;
 using SIS.HTTP.Extensions;
 using SIS.HTTP.Headers;
@@ -14,6 +16,7 @@ namespace SIS.HTTP.Responses
         {
             this.Headers = new HttpHeaderCollection();
             this.Content = new byte[0];
+            this.Cookies = new HttpCookieCollection();
         }
         public HttpResponse(HttpResponseStatusCode statusCode) : this()
         {
@@ -24,6 +27,8 @@ namespace SIS.HTTP.Responses
 
         public IHttpHeaderCollection Headers { get; }
 
+        public IHttpCookieCollection Cookies { get; }
+
         public byte[] Content { get; set; }
 
         public void AddHeader(HttpHeader header)
@@ -31,7 +36,11 @@ namespace SIS.HTTP.Responses
             CoreValidator.ThrowIfNull(header, nameof(header));
             this.Headers.AddHeader(header);
         }
-
+        public void AddCookie(IHttpCookie cookie)
+        {
+            CoreValidator.ThrowIfNull(cookie, nameof(cookie));
+            this.Cookies.AddCookie(cookie);
+        }
         public byte[] GetBytes()
         {
             byte[] httpResponseBytesWithoutBody = Encoding.UTF8.GetBytes(this.ToString());
@@ -51,13 +60,19 @@ namespace SIS.HTTP.Responses
             return httpResponseBytesWithBody;
         }
 
-
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
 
-            result.Append($"{GlobalConstants.HttpOneProtocolFragment} {this.StatusCode.GetStatusLine()}").Append(GlobalConstants.HttpNewLine)
-                .Append(this.Headers).Append(GlobalConstants.HttpNewLine);
+            result.Append($"{GlobalConstants.HttpOneProtocolFragment} {this.StatusCode.GetStatusLine()}")
+                .Append(GlobalConstants.HttpNewLine)
+                .Append(this.Headers)
+                .Append(GlobalConstants.HttpNewLine);
+
+            if (this.Cookies.HasCookies())
+            {
+                result.Append($"{this.Cookies}").Append(GlobalConstants.HttpNewLine);
+            }
 
 
             result.Append(GlobalConstants.HttpNewLine);
