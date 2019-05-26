@@ -2,30 +2,108 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
     <meta charset="utf-8" />
     <title>Register</title>
 </head>
 <body>
-    <form method="post" action="/register">
-     
-      
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">WoW Armory</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <!--<form method="post" action="/register">
+
+
         <div>
             Username <input name="username" type="text"
                             placeholder="username" />
         </div>
-       
+
         <div>
             Password <input name="password" type="password"
-        placeholder="password" />
+                            placeholder="password" />
         </div>
         <div>
             Confirm Password <input name="confirmPassword" type="password"
-                            placeholder="Confirm Password" />
+                                    placeholder="Confirm Password" />
         </div>
 
         <div>
-            <input type="submit"  value="Register" />
+            <input type="submit" value="Register" />
         </div>
-    </form>
+    </form>-->
+
+    <div>
+        <div class="container">
+            <div" class="row justify-content-center align-items-center">
+
+                <form class="form" method="post" action="/register">
+                    <h3 class="text-center text-info">Register</h3>
+                   
+                    
+                    <div class="form-group">
+                        <label  class="text-info">Username:</label><br>
+                        <input name="username" type="text" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label   class="text-info">Password:</label><br>
+                        <input name="password" type="password" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="text-info">Confirm Password</label><br>
+                        <input  name="confirmPassword" type="password" class="form-control">
+                    </div>
+
+                    <div >
+                        <input type="submit"  class="btn btn-info btn-md" value="Register">
+                    </div>
+
+                    <!--<div>
+        Username <input name="username" type="text"
+                        placeholder="username" />
+    </div>
+
+    <div>
+        Password <input name="password" type="password"
+                        placeholder="password" />
+    </div>
+    <div>
+        Confirm Password <input name="confirmPassword" type="password"
+                                placeholder="Confirm Password" />
+    </div>
+    <div>
+        <input type="submit" value="Register" />
+    </div>-->
+                </form>
+        </div>
+    </div>
 </body>
+
+
+
 </html>

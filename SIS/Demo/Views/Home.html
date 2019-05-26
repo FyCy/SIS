@@ -2,20 +2,60 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <meta charset="utf-8" />
-    <title></title>
+    <title>
+        Home
+    </title>
 </head>
 <body>
-    <h1>
-        SIS<ul>
-            <li>h</li>
-            <li>e</li>
-            <li>l</li>
-            <li>l</li>
-            <li>o</li>
-            <li>!</li>
-        </ul>
-        <a href="/logout"> LOGOUT </a>
-    </h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">WoW Armory</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+               
+            </ul>
+            
+        </div>
+    </nav>
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="https://www.hdwallpaper.nu/wp-content/uploads/2016/02/World_Warcraft_Legion_wallpaper_27.jpg" width="1600" height="890" class="d-block w-100" alt="...">
+            </div>
+
+            <div class="carousel-item">
+                <img src="http://i.imgur.com/glh4rkd.jpg" width="1600" height="890" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item active">
+                <img src="https://mondrian.mashable.com/uploads%252Fcard%252Fimage%252F640756%252F2c422612-f3ea-43db-8301-63281ecf206c.jpg%252F950x534__filters%253Aquality%252890%2529.jpg?signature=clD1uV9pVjRu6-wJYdSjpV5F00I=&source=https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com" class="d-block w-100" width="1600" height="890" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </body>
 </html>

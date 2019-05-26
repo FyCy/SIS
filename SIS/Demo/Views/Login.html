@@ -4,29 +4,107 @@
 <head>
     <meta charset="utf-8" />
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <style>
+    .bg-img {
+        /* The image used */
+        background-image: url("http://mattswowguide.weebly.com/uploads/1/0/2/9/10297228/3343338.jpg?265");
+        min-height: 400px;
+         /*Center and scale the image nicely*/ 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+</style>
+    
 </head>
-<body>
-    <form action="/login " method="post">
-    <div>
-        Username <input name="username" type="text"
-                        placeholder="username" />
-    </div>
-
-    <div> Password <input type="password" name="password" 
-                          placeholder="password" /></div>
+<body style="        background-image: url(http://amiyuy.com/wow/wp-content/uploads/2016/04/2015-11-20_MoP_Azeroth_Final_1000px_by-amiyuy.jpg)">
 
 
-    <div>
-        <input type="submit" value="Login" />
-    </div>
-    </form>
-    Don't have an account?
-    <form action="/register" method="get">
-        <div>
-            <input type="submit" value="Register" />
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">WoW Armory</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+
+            </ul>
+            
         </div>
+    </nav>
+  
+    <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12 bg-img">
+                        <form id="login-form" class="form" action="" method="post" >
+                            <h3 class="text-center text-info">Login</h3>
+                            <div class="form-group">
+                                <label for="username" name="username" class="text-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" name="password" class="text-info">Password:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                               
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a href="/register" class="btn btn-info btn-md" style="color:white">Register here</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    </form>
 
+
+
+    <!--<div class="container center_div">
+        <form action="/login " method="post">
+            <div class="form-row">
+                <div>
+                    Username
+                    <input type="text" name="username" class="form-control" placeholder="Username">
+                </div>
+                <div>
+                    Password
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Login">
+            </div>
+        </form>
+        Don't have an account?
+        <form action="/register" method="get">
+            <div>
+                <a class="btn btn-primary" href="/register" role="button">Register</a>
+            </div>
+
+        </form>
+        </div>-->
 </body>
 </html>
