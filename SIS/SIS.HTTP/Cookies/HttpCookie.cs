@@ -28,7 +28,7 @@ namespace SIS.HTTP.Cookies
         }
 
         public string Key { get; }
-        public string Value { get; }
+        public string Value { get; }     
         public DateTime Expires { get;  set; }
         public string Path { get; set; }
         public bool IsNew { get;  }
