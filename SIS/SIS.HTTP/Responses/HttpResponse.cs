@@ -71,10 +71,12 @@ namespace SIS.HTTP.Responses
 
             if (this.Cookies.HasCookies())
             {
-                result.Append($"{this.Cookies}").Append(GlobalConstants.HttpNewLine);
+                foreach (var cookie  in this.Cookies)
+                {
+                    result.Append($"Set-Cookie: {cookie}").Append(GlobalConstants.HttpNewLine);
+                }
+               
             }
-
-
             result.Append(GlobalConstants.HttpNewLine);
 
             return result.ToString();

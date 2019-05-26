@@ -48,7 +48,10 @@ namespace SIS.HTTP.Cookies
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            foreach (var cookie in this.httpCookies)
+            {
+                yield return cookie.Value;
+            }
         }
 
         public override string ToString()

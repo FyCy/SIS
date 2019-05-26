@@ -54,7 +54,5 @@ namespace SIS.HTTP.Cookies
         {
             this.Expires = DateTime.UtcNow.AddDays(-1);
         }
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SIS.HTTP.Common;
+using SIS.HTTP.Contracts;
 using SIS.HTTP.Cookies;
 using SIS.HTTP.Cookies.Contracts;
 using SIS.HTTP.Enums;
@@ -39,6 +40,7 @@ namespace SIS.HTTP.Requests
         public HttpRequestMethod RequestMethod { get; private set; }
 
         public IHttpCookieCollection Cookies { get; }
+        public IHttpSession Session { get; set; }
 
         private bool IsValidRequestLine(string[] requestLineParams)
         {
@@ -60,12 +62,13 @@ namespace SIS.HTTP.Requests
 
         private bool HasQueryString()
         {
+
             return this.Url.Split('?').Length > 1;
         }
 
         private IEnumerable<string> ParsePlainRequestHeaders(string[] requestLines)
         {
-            for (int i = 1; i < requestLines.Length -1 ; i++)
+            for (int i = 1; i < requestLines.Length - 1; i++)
             {
                 if (!string.IsNullOrEmpty(requestLines[i]))
                 {
@@ -76,7 +79,7 @@ namespace SIS.HTTP.Requests
         private void ParseRequestMethod(string[] requestLineParams)
         {
             HttpRequestMethod method;
-            bool parseResult = HttpRequestMethod.TryParse(requestLineParams[0],true, out  method);
+            bool parseResult = HttpRequestMethod.TryParse(requestLineParams[0], true, out method);
             if (!parseResult)
             {
                 throw new BadRequestException(string.Format(GlobalConstants.UnsupportedHttpMethodExceptionMessage, requestLineParams[0]));
@@ -96,24 +99,45 @@ namespace SIS.HTTP.Requests
 
         private void ParseRequestHeaders(string[] plainHeaders)
         {
-            plainHeaders.Select(plainHeader => plainHeader.Split(new[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            plainHeaders.Select(plainHeader => plainHeader.Split(new[] { ": " }, StringSplitOptions.RemoveEmptyEntries))
             .ToList().ForEach(headerKeyValuePair => this.Headers.AddHeader
             (new HttpHeader(headerKeyValuePair[0], headerKeyValuePair[1])));
         }
 
         private void ParseRequestQueryParameters()
         {
+
             if (this.HasQueryString())
             {
-                this.Url.Split('?', '#')[1]
-              .Split('&')
-              .Select(plainQueryParameter => plainQueryParameter.Split('='))
+                if (!this.Url.Contains('?'))
+                {
+                    return;
+                }
+                string queryString = this.Url.Split('?', '#')[1];
+                if (string.IsNullOrWhiteSpace(queryString))
+                {
+                    return;
+                }
+                string[] queryParams = queryString.Split('&');
+                //.ForEach(parsedQueryParameterKeyValuePair =>
+                //this.QueryData.Add(parsedQueryParameterKeyValuePair[0], parsedQueryParameterKeyValuePair[1]));
+
+                if (!IsValidRequestQueryString(queryString, queryParams))
+                {
+                    throw new BadRequestException();
+                }
+
+               queryParams.Select(plainQueryParameter => plainQueryParameter.Split('='))
               .ToList()
               .ForEach(parsedQueryParameterKeyValuePair =>
-              this.FormData.Add(parsedQueryParameterKeyValuePair[0], parsedQueryParameterKeyValuePair[1]));
+              this.QueryData.Add(parsedQueryParameterKeyValuePair[0], parsedQueryParameterKeyValuePair[1]));
+              ////  this.Url.Split('?', '#')[1]
+              ////.Split('&')
+              //.Select(plainQueryParameter => plainQueryParameter.Split('='))
+              //.ToList()
+              //.ForEach(parsedQueryParameterKeyValuePair =>
+              //this.QueryData.Add(parsedQueryParameterKeyValuePair[0], parsedQueryParameterKeyValuePair[1]));
             }
-
-          
         }
 
         private void ParseRequestFormDataParamaters(string requestBody)
@@ -126,9 +150,8 @@ namespace SIS.HTTP.Requests
                .Select(plainQueryParameter => plainQueryParameter.Split('='))
                .ToList()
                .ForEach(parsedQueryParameterKeyValuePair =>
-               this.QueryData.Add(parsedQueryParameterKeyValuePair[0], parsedQueryParameterKeyValuePair[1]));
+               this.FormData.Add(parsedQueryParameterKeyValuePair[0], parsedQueryParameterKeyValuePair[1]));
             }
-           
         }
 
         private void ParseRequestParameters(string requestBody)
@@ -147,9 +170,9 @@ namespace SIS.HTTP.Requests
 
                 foreach (var cookie in unparsedCookie)
                 {
-                    string[] cookieKVP = cookie.Split(new[] {'='}, 2 );
+                    string[] cookieKVP = cookie.Split(new[] { '=' }, 2);
 
-                    HttpCookie httpCookie = new HttpCookie(cookieKVP[0], cookieKVP[1] , false);
+                    HttpCookie httpCookie = new HttpCookie(cookieKVP[0], cookieKVP[1], false);
 
                     this.Cookies.AddCookie(httpCookie);
                 }
@@ -172,7 +195,7 @@ namespace SIS.HTTP.Requests
             this.ParseRequestUrl(requestLineParams);
             this.ParseRequestPath();
             this.ParseRequestHeaders(this.ParsePlainRequestHeaders(splitRequestString).ToArray());
-            //this.ParseCookies();
+            this.ParseCookies();
             this.ParseRequestParameters(splitRequestString[splitRequestString.Length - 1]);
 
 

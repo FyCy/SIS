@@ -9,7 +9,7 @@ namespace SIS.WebServer.Results
 {
     public class HtmlResult : HttpResponse
     {
-        public HtmlResult (string content , HttpResponseStatusCode reponseStatusCode) : base(reponseStatusCode)
+        public HtmlResult (string content , HttpResponseStatusCode responseStasusCode) : base(responseStasusCode)
         {
             this.Headers.AddHeader(new HttpHeader("Content-Type", "text/html; charset=8"));
             this.Content = Encoding.UTF8.GetBytes(content);
