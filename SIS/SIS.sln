@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIS.WebServer", "SIS\SIS.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIS.HTTP", "SIS.HTTP\SIS.HTTP.csproj", "{B0243202-C084-4E00-83F4-AB44B5FD22FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{2B093366-C66B-487E-B9C5-E4335D7ABDBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{2B093366-C66B-487E-B9C5-E4335D7ABDBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS.MvcFramework", "SIS.MvcFramework\SIS.MvcFramework.csproj", "{42EF8CAA-2614-4622-BBE3-DEAABCD093B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B093366-C66B-487E-B9C5-E4335D7ABDBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42EF8CAA-2614-4622-BBE3-DEAABCD093B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42EF8CAA-2614-4622-BBE3-DEAABCD093B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42EF8CAA-2614-4622-BBE3-DEAABCD093B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42EF8CAA-2614-4622-BBE3-DEAABCD093B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

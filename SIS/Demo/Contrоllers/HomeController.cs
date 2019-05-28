@@ -1,20 +1,22 @@
 ﻿using SIS.HTTP.Enums;
-using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
-using SIS.WebServer.Results;
+using SIS.MvcFramework.Routing;
 
 namespace Demo.Contrоllers
 {
     public class HomeController : BaseController
     {
-        public IHttpResponse Home (IHttpRequest request)
+        [HttpGet("/")]
+        public IHttpResponse Home ()
         {
             return this.View("Home");
         }
+        [HttpGet("/hello")]
 
-        public IHttpResponse GetUsername (IHttpRequest request)
+        public IHttpResponse GetUsername ()
         {
-            return new HtmlResult($"<h1> Hello {this.GetUser(request)}", HttpResponseStatusCode.Ok);
+             PrepareHtmlResult($"<h1> Hello {this.User}", HttpResponseStatusCode.Ok);
+            return this.Response;
         }
     }
 }

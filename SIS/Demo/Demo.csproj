@@ -17,8 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SIS.HTTP\SIS.HTTP.csproj" />
-    <ProjectReference Include="..\SIS\SIS.WebServer.csproj" />
+    <ProjectReference Include="..\SIS.MvcFramework\SIS.MvcFramework.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +30,10 @@
     <None Update="Views\Register.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

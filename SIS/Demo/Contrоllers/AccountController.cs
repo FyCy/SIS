@@ -1,10 +1,10 @@
 ﻿using Demo.Models;
-using Demo.Services;
 using SIS.HTTP.Cookies;
 using SIS.HTTP.Enums;
 using SIS.HTTP.Requests;
 using SIS.HTTP.Responses;
-using SIS.WebServer.Results;
+using SIS.MvcFramework.Routing;
+using SIS.MvcFramework.Services;
 using System;
 using System.Linq;
 
@@ -12,23 +12,31 @@ namespace Demo.Contrоllers
 {
     public class AccountController : BaseController
     {
+       
         private HashService hashService;
         public AccountController()
         {
             this.hashService = new HashService();
         }
-        public IHttpResponse Register (IHttpRequest request)
+
+        [HttpGet("/register")]
+        public IHttpResponse Register ()
         {
             return this.View("Register");
         }
-        public IHttpResponse Login(IHttpRequest request)
+
+        [HttpGet("/login")]
+        public IHttpResponse Login()
         {
             return this.View("Login");
         }
-        public IHttpResponse DoLogin(IHttpRequest request)
+
+
+        [HttpPostAttribute("/login")]
+        public IHttpResponse DoLogin()
         {
-            var userName = request.FormData["username"].ToString().Trim();
-            var password = request.FormData["password"].ToString();
+            var userName = this.Request.FormData["username"].ToString().Trim();
+            var password = this.Request.FormData["password"].ToString();
             var hashedPassword = this.hashService.Hash(password);
 
             var user =  this.Db.Users.FirstOrDefault(userFromDb => userFromDb.Username == userName 
@@ -36,20 +44,22 @@ namespace Demo.Contrоllers
 
             if (user == null)
             {
-                return this.BadRequestError("Ivalid username or password!");
+                return BadRequestError("Ivalid username or password!");
             }
 
-            var response = new RedirectResult("/");
+            var response = this.RedirectTo("/hello");
             var cookie = this.UserCookieService.GetUserCookie(user.Username);
             response.Cookies.AddCookie(new HttpCookie(".auth-WoW" , cookie , 7));
 
             return response;
         }
-        public  IHttpResponse DoRegister (IHttpRequest request)
+
+        [HttpPostAttribute("/register")]
+        public  IHttpResponse DoRegister ()
         {
-            var userName = request.FormData["username"].ToString();
-            var password = request.FormData["password"].ToString();
-            var confrimPassword = request.FormData["confirmPassword"].ToString();
+            var userName =this.Request.FormData["username"].ToString();
+            var password = this.Request.FormData["password"].ToString();
+            var confrimPassword = this.Request.FormData["confirmPassword"].ToString();
 
             if (string.IsNullOrWhiteSpace(userName) || userName.Length < 4)
             {
@@ -87,21 +97,22 @@ namespace Demo.Contrоllers
 
                 return ServerError(e.Message);
             }         
-            return new HtmlResult("Register" , HttpResponseStatusCode.Ok);
+            PrepareHtmlResult("Register" , HttpResponseStatusCode.Ok);
+            return Response;
         }
 
-        public IHttpResponse Logout (IHttpRequest request)
+        [HttpGet("/logout")]
+        public IHttpResponse Logout ()
         {
-            if (!request.Cookies.ContainsCookie(".auth-WoW"))
+            if (!this.Request.Cookies.ContainsCookie(".auth-WoW"))
             {
-                return new RedirectResult("/");
+                return this.RedirectTo("/");
             }
-            var cookie = request.Cookies.GetCookies(".auth-WoW");
+            var cookie = this.Request.Cookies.GetCookies(".auth-WoW");
 
             cookie.Delete();
-            var response = new RedirectResult("/");
-            response.Cookies.AddCookie(cookie);
-            return response;
+            this.Response.Cookies.AddCookie(cookie);
+            return this.RedirectTo("/");
         }
     }
 }
